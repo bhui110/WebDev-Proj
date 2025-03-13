@@ -1,4 +1,4 @@
-# WebDev-Proj
+# Welcome To Our Web Dev Project!
 
 ## Current Ideas for Projects
 <! **Game** >
