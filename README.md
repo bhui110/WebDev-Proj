@@ -1,8 +1,8 @@
 # WebDev-Proj
 
 ## Current Ideas for Projects
+<! **Game** >
 ```
-**Game**
 1. Color sequence
 2. Hue Guesser
 ```
