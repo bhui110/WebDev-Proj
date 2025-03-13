@@ -2,8 +2,9 @@
 
 ## Current Ideas for Projects
 ```
-### Game
+**Game**
 1. Color sequence
 2. Hue Guesser
 ```
 
+*Group Members: Brandon H., Tina, Maite*
