@@ -7,6 +7,7 @@
 2. Hue Guesser
 3. Hide and Seek
 4. Pattern Recognition Test
+5. testing
 ```
 
 *Group Members: Brandon H., Tina, Maite*
