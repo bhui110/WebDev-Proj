@@ -1,0 +1,39 @@
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #792bde;
+}
+
+h2 {
+    color: #48b9ae;
+}
+
+.m {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.m_list {
+    list-style: none;
+    padding: 0;
+}
+
+.project {
+    margin-top: 20px;
+    color: #d30038;
+}
