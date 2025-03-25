@@ -1,7 +1,11 @@
+@font-face {
+    font-family: Lexend Peta;
+    src: url(/LexendPeta-font/LexendPeta-VariableFont_wght.ttf);
+}
+
 body {
     background-color: #e9e9e9;
     margin:0;
-
 }
 
 #nav {
@@ -22,4 +26,15 @@ a {
 
 a:hover{
     color: #3e3e3e;
+}
+
+.button{
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+#start-text{
+    font-family:Lexend Peta;
+    color: #fff;
+    justify-items: center;
 }
