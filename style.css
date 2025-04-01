@@ -1,4 +1,4 @@
-body{
+#game-container{
     position: relative;
     padding: 0px;
     margin: 0px;
@@ -10,8 +10,6 @@ body{
 #top{
     position: absolute;
     top: 30vh;
-
-
 }
 
 #box-container{
@@ -30,12 +28,6 @@ body{
     border-radius: 5px;
     position: absolute;
 }
-
-#one{
-    left:100px;
-}
-
-
 
 #bottom{
     position: absolute;

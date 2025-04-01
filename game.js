@@ -1,6 +1,6 @@
+//-------------------------------- Initial set up --------------------------------------------
 // create random order
 let random_order = generate_random();
-console.log(random_order);
 
 // create innerHTML for random order
 let boxes_element = '<div class="box" id="1">1</div>';
@@ -15,7 +15,7 @@ container.innerHTML = boxes_element;
 
 // changing color one by one according to the list
 let boxes = document.querySelectorAll(".box");
-let colors = ["#000000", "#101010", "#202020", "#303030","#404040", "#505050", "#606060", "#707070", "#808080", "#ffffff"]; 
+let colors = ["#000000", "#101010", "#202020", "#303030","#404040", "#505050", "#606060", "#707070", "#808080", "#ffffff"];
 // colors should be a list of color in correct order, the first and the last can be generated randomly, 
 // colors in between are automatically calculated
 
@@ -24,72 +24,85 @@ for (let i = 0; i < boxes.length; i++){
     document.getElementById(id).style.backgroundColor = colors[i];
 }
 
-// positioning the boxes : set px in absolute positioning
+// set starting position of the boxes
 for (let i = 0; i < boxes.length; i++){
     boxes[i].style.left = `${85*i}px`;
 }
 
 
-// loop through the element in new and change the position
-
-
+//--------------------------------- drag and drop ---------------------------------
 
 
 // drag and drop
-
-// add event listener to div box number 2 - 9
-
-// if dragging, detect position of drag and move the element according to position
-    // break down position of container into ten portions, 
-    // if the element is dragger to next box
-        //create a new boxes element and set innerHTML to new boxes_element
-
-// let containerWidth = container.offsetWidth;
-// let position = container.getBoundingClientRect();
-// let leftBonud = container.getBoundingClientRect().left;
-// let rightBound = container.getBoundingClientRect().left + containerWidth;
-
-
-// console.log(containerWidth);
-// console.log(leftBonud);
-// console.log(rightBound);
-
-
-// sample code from stackoverflow
+let moving_boxes = document.querySelectorAll(".box"); // need to change to class .move only
 let dragging = false;
-let box = document.getElementById("2")
-box.addEventListener('mousedown', function(evt){
+let offsetInBox;
+let box_selected;   
+let current_elements_order; // innerHTML string
+let start_position;
+let containerLeft = container.getBoundingClientRect().left;
+let left_boundary = containerLeft + 85;
+let right_boundary = containerLeft + 85*8;
+
+
+for (let i = 1; i < (boxes.length -1) ; i++){ //only apply to index 1-8
+    boxes[i].addEventListener('mousedown', function(event){
     dragging = true;
-  });
+    offsetInBox = event.offsetX;
+    box_selected = boxes[i];
+    event.preventDefault()
+    });
+}
 
-window.addEventListener('mouseup', function(evt){
-    dragging = false;
-  });
-
-
-window.addEventListener('mousemove', function(evt){
+window.addEventListener('mousemove', function(event){
 if(dragging){
+    event.preventDefault();
+    let mouse_position = event.pageX;
+    let box_position;  // box is positioned absolute in container
+
+    if (mouse_position >= left_boundary && mouse_position <= right_boundary){
+            box_position = mouse_position - containerLeft - offsetInBox;
+    } else if (mouse_position < left_boundary){
+        box_position = left_boundary - containerLeft - offsetInBox;
+    } else if (mouse_position - offsetInBox < right_boundary) {   /// ??????
+        box_position = right_boundary;
+    }
+ 
+    box_selected.style.left = box_position + 'px';
+
     
-    // get X position of left side of parent element
-    var parentContainer = box.parentElement;
-    var parentLeft = parentContainer.getBoundingClientRect().left;
-    // get current mouse X position
-    var mouseX = evt.pageX;
-    
-    // MOVE -- set CSS 'left' value to mouse X - parent's left X = left offset for drag element
-    dragEl.style.left = mouseX - parentLeft;
+
+    // if current mouse position is across 1/2 of the next, move the other boxes away
+        // if the mouse is moving left, move the box on its right one unit to the right
+            // change the current element order and only apply position change to that 1 box
+
+        // if the mouse is moving right, move the box on its left on unit to the left
+            // change the current element order and only apply position change to that 1 box
+
+
+   
 }
 });
 
+window.addEventListener('mouseup', function(){
+    dragging = false;
+
+    // when mouseup, position the selected box according to current_elements_order
+  });
 
 
-// ------------------------------------------------
+// ----------------------------------- check answer, display result ------------------------------
 
 // correct ans is always 1,2,3,4,5,6,7,8,9,10, assign the order of color in acending color
 let correct_ans = '';
 for (let n = 1; n < 11; n++) {
     correct_ans += `<div class="box" id="${n}">${n}</div>`;
 }
+
+
+
+
+// ------------------------------------ functions ---------------------------------------
 
 function generate_random(){
     let order = [2,3,4,5,6,7,8,9];
