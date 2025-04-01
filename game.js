@@ -4,13 +4,8 @@ let random_order = generate_random();
 
 // create innerHTML for random order
 let boxes_element = '<div class="box" id="1">1</div>';
-for (let i = 0; i < random_order.length; i++){
-    boxes_element += `<div class="box" id="${random_order[i]}">${random_order[i]}</div>`;
-}
-boxes_element += '<div class="box" id="10">10</div>'
-
 let container = document.getElementById("box-container");
-container.innerHTML = boxes_element;
+positioningBox(random_order);
 
 
 // changing color one by one according to the list
@@ -34,43 +29,53 @@ for (let i = 0; i < boxes.length; i++){
 
 
 // drag and drop
-let moving_boxes = document.querySelectorAll(".box"); // need to change to class .move only
 let dragging = false;
 let offsetInBox;
-let box_selected;   
-let current_elements_order; // innerHTML string
-let start_position;
+let boxSelected;   
+let mouseStart;
 let containerLeft = container.getBoundingClientRect().left;
-let left_boundary = containerLeft + 85;
-let right_boundary = containerLeft + 85*8;
-
+let leftBoundary = containerLeft + 85;
+let rightBoundary = containerLeft + 85*8;
+let currentOrder = random_order; // innerHTML string
+let scoreBox = document.getElementById("score");
 
 for (let i = 1; i < (boxes.length -1) ; i++){ //only apply to index 1-8
     boxes[i].addEventListener('mousedown', function(event){
     dragging = true;
     offsetInBox = event.offsetX;
-    box_selected = boxes[i];
+    boxSelected = boxes[i];
     event.preventDefault()
+    mouseStart = event.pageX;
     });
 }
 
 window.addEventListener('mousemove', function(event){
 if(dragging){
     event.preventDefault();
-    let mouse_position = event.pageX;
-    let box_position;  // box is positioned absolute in container
+    let mousePosition = event.pageX;
+    let boxPosition;  // box is positioned absolute in container
 
-    if (mouse_position >= left_boundary && mouse_position <= right_boundary){
-            box_position = mouse_position - containerLeft - offsetInBox;
-    } else if (mouse_position < left_boundary){
-        box_position = left_boundary - containerLeft - offsetInBox;
-    } else if (mouse_position - offsetInBox < right_boundary) {   /// ??????
-        box_position = right_boundary;
+    if (mousePosition >= leftBoundary + offsetInBox && mousePosition <= rightBoundary + offsetInBox){
+        boxPosition = mousePosition - containerLeft - offsetInBox;
+    } else if (mousePosition < leftBoundary + offsetInBox){
+        boxPosition = leftBoundary - containerLeft ;
+    } else if (mousePosition <= rightBoundary + offsetInBox) {   
+        boxPosition = rightBoundary - containerLeft ; 
     }
  
-    box_selected.style.left = box_position + 'px';
+    boxSelected.style.left = boxPosition + 'px';
+    let boxIndex = Math.floor((mousePosition - containerLeft)/85); // index
+    console.log(boxIndex);
 
-    
+
+    if (mousePosition > mouseStart){ // moving right
+        currentOrder = reArangeOrder(currentOrder, boxIndex, 1);
+    } else {
+        currentOrder = reArangeOrder(currentOrder, boxIndex, 0);
+    }
+
+    scoreBox.innerHTML = currentOrder;
+
 
     // if current mouse position is across 1/2 of the next, move the other boxes away
         // if the mouse is moving left, move the box on its right one unit to the right
@@ -78,8 +83,6 @@ if(dragging){
 
         // if the mouse is moving right, move the box on its left on unit to the left
             // change the current element order and only apply position change to that 1 box
-
-
    
 }
 });
@@ -114,4 +117,38 @@ function generate_random(){
         order[i] = b;
     }
     return order;
+}
+
+
+function reArangeOrder(order, i, direction){ 
+    let moving = order[i];
+    let swapBox;
+    let newOrder = [];
+    if (direction === 1){  // movint to the right, only interchange if i between 1 and 7
+        if (i >= 1 && i <= 7){
+            let swapBox = order[i+1];
+            newOrder = order.slice(0,i);
+            newOrder.push(swapBox, moving);
+            newOrder = newOrder.concat(order.slice(i+2));
+        }
+
+    } else if (direction === 0){ // moving to the left, only interchange if i between 2 and 8
+        if (i >= 2 && i <= 8 ){
+            let swapBox = order[i-1];
+            newOrder = order.slice(0,i-2);
+            newOrder.push(moving, swapBox,);
+            newOrder = newOrder.concat(order.slice(i+1));
+        }
+    }
+    console.log(newOrder);
+    return newOrder
+}
+
+function positioningBox(order){
+    let boxes_element = '<div class="box" id="1">1</div>';
+    for (let i = 0; i < order.length; i++){
+        boxes_element += `<div class="box" id="${order[i]}">${order[i]}</div>`;
+    }
+    boxes_element += '<div class="box" id="10">10</div>'
+    container.innerHTML = boxes_element;   // global variable
 }
