@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lexend Peta');
 
+body{
+    user-select: none;
+}
 
 .top{
     position: absolute;
@@ -30,7 +33,6 @@
     height: 80px;
     border-radius: 5px;
     position: absolute;
-    user-select: none;
     color: transparent;
 }
 

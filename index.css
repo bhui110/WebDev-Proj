@@ -42,11 +42,13 @@ h3{
     display:flex;
     justify-content: right; 
     background-color: #fff;
-    padding:15px;
+    padding:10px;
     position:absolute;
     top:0;
     right:0;
     width:100%;
+    font-family: Lexend Peta;
+    color: #5E5E5E;
 }
 
 .item{

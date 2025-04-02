@@ -2,14 +2,8 @@ let random_order = generate_random();
 let container = document.getElementById("box-container");
 changeHTMLBox(random_order);
 
-
 let boxes = document.querySelectorAll(".box");
-// let colors = ["#000000", "#101010", "#202020", "#303030","#404040", "#505050", "#606060", "#707070", "#808080", "#ffffff"];
 let colors =  generateColor();
-
-// colors should be a list of color in correct order, the first and the last can be generated randomly, 
-// colors in between are automatically calculated
-
 coloringBox();
 positionBox();
 
@@ -23,9 +17,8 @@ let rightBoundary = containerLeft + 85*8;
 let currentOrder = random_order;
 let scoreBox = document.getElementById("score");
 let topBox = document.querySelector(".top");
-// let log = document.getElementById("log");
 let startIndex;
-let answer = [2,3,4,5,6,7,8,9]  // correct ans is always 1,2,3,4,5,6,7,8,9,10, assign color in acending color
+let answer = [2,3,4,5,6,7,8,9];
 
 setBoxHandler()
 setDragHandler()
@@ -35,7 +28,6 @@ let button = document.getElementById("checkAns");
 button.onclick = displayResult;
 
 function displayResult(){
-
     let right = 0;
     for (let i = 0; i < answer.length ; i ++){
     if (answer[i] === currentOrder[i]){
@@ -48,7 +40,6 @@ function displayResult(){
     if (score == 100){
         topBox.innerHTML = "<p>Perfect!</p>";
         topBox.classList.add("perfect");
-        // topBox.style.color = 'white';
     } else if (score > 40){
         topBox.innerHTML = "<p>Good!</p>";
         topBox.classList.add("good");
@@ -57,11 +48,7 @@ function displayResult(){
         topBox.classList.add("tryAgain");
         topBox.style.color = 'white';
     }
-
-
-
-
-
+    
     button.innerHTML = "restart";
     button.onclick = reload => {window.location.reload();}
 }
@@ -83,7 +70,6 @@ function setBoxHandler(){
 function setDragHandler(){
     window.addEventListener('mousemove', function(event){
     if(dragging){
-        event.preventDefault();
         let mousePosition = event.pageX;
         let boxPosition;  // box is positioned absolute in container
 
@@ -101,13 +87,9 @@ function setDragHandler(){
 }
 
 function setDropHandler(){
-
     window.addEventListener('mouseup', function(event){
-
         if (event.target === boxSelected){
-
             dragging = false;
-
             let i = Math.floor((event.pageX - containerLeft)/85) -1; 
             if (i < 0){
                 i = 0;
@@ -117,18 +99,14 @@ function setDropHandler(){
             if (event.pageX > mouseStart + 40 || event.pageX < mouseStart - 40){
                 reArangeOrder(i, 1);
             }
-
             changeHTMLBox(currentOrder);
             boxes = document.querySelectorAll(".box"); // box element is updated, re-do all the steps to set up boxes
             coloringBox();
             positionBox();
             setBoxHandler();
         }
-        // fixed bug: when click on confirm button, windows event is triggered, boxes are re-arranged
-
     });
 }
-
 
 function generate_random(){
     let order = [2,3,4,5,6,7,8,9];
@@ -141,7 +119,6 @@ function generate_random(){
     }
     return order;
 }
-
 
 function reArangeOrder(i){ 
     let s = startIndex;
@@ -184,8 +161,6 @@ function generateColor(){
     }
     
     for (let i = 0; i < 10; i++){
-     // make a color array 
-      // for the index
       let color = [];
       let hexStr;
       for (let j = 0; j < 3; j++){
@@ -202,7 +177,6 @@ function generateColor(){
     return colors;
 }
 
-
 function toHex(n){
     let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
     let d1 = Math.floor(n/16);
@@ -211,7 +185,3 @@ function toHex(n){
     hexStr = hexStr + hex[d1] + hex[d2];
     return hexStr
   }
-  
-
-
-
