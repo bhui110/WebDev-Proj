@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend Peta');
+
+
+.top{
+    position: absolute;
+    top: 10vh;
+    height: 300px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    font-family: Lexend Peta;
+    font-size: 18px;
+    text-align: center;
+    line-height: 200%;;
+    color: #4E4E4E;
+}
+
+#box-container{
+    display: flex;
+    flex: row;
+    gap: 5px;
+    position: absolute;
+    top: 56vh;
+    left: 23vw;
+}
+
+.box {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    position: absolute;
+    user-select: none
+}
+
+#bottom{
+    position: absolute;
+    top: 76vh;
+    font-family: Lexend Peta;
+    text-align: center;
+    font-size: 18px;
+    color: #5E5E5E;
+}
+
+#checkAns{
+    height: 70px;
+    width: 240px;
+    border-radius: 50px;
+    border: solid, 3px, #8F8F8F;
+    color: #4E4E4E;
+    font-family: Lexend Peta;
+    text-align: center;
+    font-size: 18px;
+    background-color: #ECECEC;
+    transition: background-color 200ms ease-in-out;
+}
+
+#checkAns:hover{
+    background-color: #F9F7F7;
+}
+
+
+
+.perfect{
+    top: 10vh;
+    font-size: 20px;
+    height: 400px;
+    width: 400px;
+    color: #fff;
+    background-image: url("/images/Ellipse6.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    transform: scale(120%);
+    transition: transform 700ms ease-in-out;
+}
+
+
+.good{
+    top: 10vh;
+    font-size: 20px;
+    height: 400px;
+    width: 400px;
+    color: #fff;
+    background-image: url("/images/Ellipse8.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    transform: scale(120%);
+    transition: transform 700ms ease-in-out;
+}
+
+.tryAgain{
+    top: 10vh;
+    font-size: 20px;
+    height: 400px;
+    width: 400px;
+    color: #fff;
+    background-image: url("/images/Ellipse7.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    transform: scale(120%);
+    transition: transform 700ms ease-in-out;
+}
