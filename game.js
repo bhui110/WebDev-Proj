@@ -4,7 +4,9 @@ changeHTMLBox(random_order);
 
 
 let boxes = document.querySelectorAll(".box");
-let colors = ["#000000", "#101010", "#202020", "#303030","#404040", "#505050", "#606060", "#707070", "#808080", "#ffffff"];
+// let colors = ["#000000", "#101010", "#202020", "#303030","#404040", "#505050", "#606060", "#707070", "#808080", "#ffffff"];
+let colors =  generateColor();
+
 // colors should be a list of color in correct order, the first and the last can be generated randomly, 
 // colors in between are automatically calculated
 
@@ -171,9 +173,45 @@ function positionBox(){
 }
 
 function generateColor(){
-    let color = [];
-    let r;
-    let g;
-    let b;
+    let colors = [];
+    let c;
+    let ran = Math.floor(Math.random()*3);
+    let startColor = [];
     
+    for (let i = 0; i < 3; i++){
+      c = Math.floor(Math.random()*(255 - 10*16) + 4*16);
+      startColor.push(c)
+    }
+    
+    for (let i = 0; i < 10; i++){
+     // make a color array 
+      // for the index
+      let color = [];
+      let hexStr;
+      for (let j = 0; j < 3; j++){
+        if (j !== ran){
+          hexStr = toHex(startColor[j]);
+          color.push(hexStr);
+        } else {
+          hexStr = toHex(startColor[j] + i*7);
+          color.push(hexStr);
+        }
+      }
+      colors.push("#" + color.join(""));
+    }
+    return colors;
 }
+
+
+function toHex(n){
+    let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    let d1 = Math.floor(n/16);
+    let d2 = n%16;
+    let hexStr = '';
+    hexStr = hexStr + hex[d1] + hex[d2];
+    return hexStr
+  }
+  
+
+
+
