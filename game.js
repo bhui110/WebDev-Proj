@@ -63,6 +63,7 @@ function setBoxHandler(){
             mouseStart = event.pageX;
             startIndex = i - 1;
             boxes[i].style.zIndex = "10";
+            boxes[i].classList.add("moving");
         });
 }
 }
@@ -90,6 +91,7 @@ function setDropHandler(){
     window.addEventListener('mouseup', function(event){
         if (event.target === boxSelected){
             dragging = false;
+            boxSelected.classList.remove("moving");
             let i = Math.floor((event.pageX - containerLeft)/85) -1; 
             if (i < 0){
                 i = 0;

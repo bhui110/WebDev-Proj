@@ -2,6 +2,16 @@
 
 body{
     user-select: none;
+    animation: loading 700ms ease-in-out;
+}
+
+@keyframes loading {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .top{
@@ -63,7 +73,6 @@ body{
 }
 
 
-
 .perfect{
     top: 10vh;
     font-size: 20px;
@@ -105,4 +114,8 @@ body{
     background-size: 300px;
     transform: scale(120%);
     transition: transform 700ms ease-in-out;
+}
+
+.moving{
+    border: solid 2px #4E4E4E;
 }
