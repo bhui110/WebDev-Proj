@@ -37,3 +37,33 @@ h2 {
     margin-top: 20px;
     color: #d30038;
 }
+
+nav {
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar li {
+    margin-left: 20px;
+    font-family: Lexend Peta;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.navbar a {
+    color: #444;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
