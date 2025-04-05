@@ -1,3 +1,4 @@
+// initial page set up
 let random_order = generate_random();
 let container = document.getElementById("box-container");
 changeHTMLBox(random_order);
@@ -7,6 +8,8 @@ let colors =  generateColor();
 coloringBox();
 positionBox();
 
+
+// game logic
 let dragging = false;
 let offsetInBox;
 let boxSelected;   
@@ -26,6 +29,8 @@ setDropHandler()
 
 let button = document.getElementById("checkAns");
 button.onclick = displayResult;
+
+//event handlers
 
 function displayResult(){
     let right = 0;
@@ -110,6 +115,8 @@ function setDropHandler(){
     });
 }
 
+
+// helper functions
 function generate_random(){
     let order = [2,3,4,5,6,7,8,9];
     for (let i = 0; i < order.length; i++){
