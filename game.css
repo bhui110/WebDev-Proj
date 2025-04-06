@@ -29,12 +29,10 @@ body{
 }
 
 #box-container{
-    display: flex;
-    flex: row;
     gap: 5px;
     position: absolute;
     top: 56vh;
-    left: 23vw;
+    width: 850px;
 }
 
 .box {
@@ -59,7 +57,7 @@ body{
     height: 70px;
     width: 240px;
     border-radius: 50px;
-    border: solid, 3px, #8F8F8F;
+    border: solid 3px #8F8F8F;
     color: #4E4E4E;
     font-family: Lexend Peta;
     text-align: center;
