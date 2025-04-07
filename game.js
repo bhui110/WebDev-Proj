@@ -54,7 +54,7 @@ function displayResult(){
         topBox.style.color = 'white';
     }
     
-    button.innerHTML = "restart";
+    button.innerHTML = "Restart";
     button.onclick = reload => {window.location.reload();}
 }
 
