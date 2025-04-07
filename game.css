@@ -77,7 +77,7 @@ body{
     height: 400px;
     width: 400px;
     color: #fff;
-    background-image: url("/images/Ellipse6.png");
+    background-image: url("images/Ellipse6.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 300px;
@@ -92,7 +92,7 @@ body{
     height: 400px;
     width: 400px;
     color: #fff;
-    background-image: url("/images/Ellipse8.png");
+    background-image: url("images/Ellipse8.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 300px;
@@ -106,7 +106,7 @@ body{
     height: 400px;
     width: 400px;
     color: #fff;
-    background-image: url("/images/Ellipse7.png");
+    background-image: url("images/Ellipse7.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 300px;
